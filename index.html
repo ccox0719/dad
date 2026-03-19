@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robert Alan Cox – Cyclopedia Americana</title>
+<link href="https://fonts.googleapis.com/css2?family=Linux+Libertine+Display:ital@0;1&family=Linux+Libertine:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --border: #a2a9b1;
+  --border-light: #eaecf0;
+  --text: #202122;
+  --text-muted: #54595d;
+  --link: #3366cc;
+  --link-red: #cc2200;
+  --infobox-head: #cee0f2;
+  --toc-bg: #f8f9fa;
+  --serif: 'Linux Libertine', 'Georgia', 'Times New Roman', serif;
+  --serif-display: 'Linux Libertine Display', 'Georgia', serif;
+  --sans: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body { background: var(--bg); color: var(--text); font-family: var(--serif); font-size: 14px; line-height: 1.6; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a.redlink { color: var(--link-red); }
+sup { font-size: 10px; }
+sup a { color: var(--link); }
+p { margin-bottom: 10px; }
+
+/* ── TOP HEADER ── */
+#site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-globe {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #d5e4f5 35%, #8aaed4 70%, #4a7aaa 100%);
+  border: 1px solid #bbb;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.logo-wordmark img { height: 32px; display: block; }
+.logo-wordmark-fallback { font-family: 'Linux Libertine', Georgia, serif; font-size: 22px; color: #000; line-height: 1; }
+.logo-sub { font-family: var(--sans); font-size: 10px; color: var(--text-muted); letter-spacing: 0.04em; margin-top: 1px; }
+
+.header-search {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.header-search input {
+  flex: 1; padding: 6px 12px;
+  border: 1px solid var(--border); border-right: none;
+  border-radius: 2px 0 0 2px;
+  font-family: var(--sans); font-size: 13px;
+  background: var(--surface);
+}
+.header-search button {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 0 2px 2px 0;
+  background: var(--bg);
+  font-family: var(--sans); font-size: 13px;
+  cursor: pointer; color: var(--text);
+}
+.header-search button:hover { background: #e8e8e8; }
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.header-user a { color: var(--link); }
+
+/* ── PAGE LAYOUT ── */
+#page-wrap {
+  display: flex;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ── LEFT SIDEBAR ── */
+#sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 12px 10px 20px;
+  border-right: 1px solid var(--border-light);
+  min-height: calc(100vh - 67px);
+  font-family: var(--sans);
+  font-size: 12.5px;
+}
+.sb-section { margin-bottom: 18px; }
+.sb-heading {
+  font-size: 11px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 5px; padding: 2px 0;
+}
+.sb-link { display: block; color: var(--link); padding: 2px 2px; }
+.sb-link:hover { text-decoration: underline; }
+
+/* TOC in sidebar */
+.toc-sidebar { margin-top: 4px; }
+.toc-sidebar-title { font-weight: 700; font-size: 13px; color: var(--text); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.toc-sidebar-title a { font-size: 11px; font-weight: 400; color: var(--link); }
+.toc-sidebar ol { padding-left: 14px; list-style: decimal; color: var(--link); }
+.toc-sidebar li { margin: 3px 0; line-height: 1.4; }
+.toc-sidebar a { color: var(--link); font-size: 12px; }
+.toc-sidebar ol ol { padding-left: 12px; list-style: none; }
+.toc-sidebar ol ol li::before { content: "– "; color: var(--text-muted); }
+
+/* ── MAIN COLUMN ── */
+#main-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── ARTICLE TABS ── */
+#article-tabs {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-end;
+  padding: 0 20px;
+  min-height: 36px;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.tabs-left { display: flex; gap: 0; }
+.tabs-right { display: flex; align-items: center; gap: 4px; margin-left: auto; color: var(--text-muted); font-size: 13px; }
+.tab {
+  padding: 6px 14px 7px;
+  border: 1px solid transparent; border-bottom: none;
+  color: var(--link); cursor: pointer;
+  position: relative; top: 1px;
+  text-decoration: none;
+  display: inline-block;
+}
+.tab.active {
+  background: var(--surface);
+  border-color: var(--border); border-bottom-color: var(--surface);
+  color: var(--text); font-weight: 600;
+}
+.tab:hover:not(.active) { background: #f0f0f0; text-decoration: none; }
+.tabs-right a { color: var(--link); padding: 6px 8px 7px; display: inline-block; }
+.tabs-right a:hover { text-decoration: underline; }
+.tab-sep { color: var(--border); }
+.tab-icon { font-size: 14px; color: var(--text-muted); padding: 6px 4px; cursor: pointer; }
+
+/* ── ARTICLE CONTENT ── */
+#content {
+  padding: 16px 20px 30px;
+  max-width: 980px;
+}
+
+.from-wiki {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.page-title {
+  font-family: var(--serif-display);
+  font-size: 30px;
+  font-weight: 400;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+  margin-bottom: 14px;
+  color: #000;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.quality-badge {
+  font-size: 11px; font-family: var(--sans);
+  background: #fffbe6; border: 1px solid #e6c619;
+  padding: 2px 8px; border-radius: 2px; color: #7a6000;
+  font-weight: 600; white-space: nowrap;
+}
+.page-subtitle {
+  font-style: italic; font-size: 13px; color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* ── NOTICES ── */
+.notice {
+  background: #eaf3fb; border-left: 4px solid #36c;
+  padding: 9px 13px; margin-bottom: 12px;
+  font-family: var(--sans); font-size: 12.5px;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.notice.orange { background: #fef9e7; border-color: #f0c040; }
+.notice-icon { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+
+/* ── INFOBOX ── */
+.infobox {
+  float: right; clear: right;
+  margin: 0 0 16px 24px;
+  width: 280px;
+  border: 1px solid var(--border);
+  font-size: 12.5px; font-family: var(--sans);
+  background: var(--bg);
+  border-collapse: collapse;
+}
+.infobox caption {
+  background: var(--infobox-head);
+  font-size: 14px; font-weight: 700;
+  padding: 6px 8px; text-align: center;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--serif);
+}
+.infobox-photo { width: 100%; padding: 10px; text-align: center; border-bottom: 1px solid var(--border-light); }
+.infobox-photo img {
+  width: 220px; height: 260px;
+  object-fit: cover; object-position: center 15%;
+  filter: sepia(0.1) contrast(1.05);
+  border: 1px solid #ccc;
+}
+.infobox-photo-caption { font-size: 11px; color: var(--text-muted); margin-top: 6px; font-style: italic; }
+.infobox tr td { padding: 4px 8px; vertical-align: top; border-bottom: 1px solid var(--border-light); }
+.infobox tr td:first-child { font-weight: 700; width: 110px; color: var(--text-muted); white-space: nowrap; }
+.infobox-subhead { background: var(--infobox-head); text-align: center; font-weight: 700; padding: 4px 8px !important; font-size: 12px; color: #333; }
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: var(--serif-display); font-size: 22px; font-weight: 400;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px; margin: 24px 0 12px;
+}
+h3 { font-family: var(--serif); font-size: 17px; font-weight: 700; margin: 18px 0 8px; }
+h4 { font-family: var(--serif); font-size: 14px; font-weight: 700; margin: 14px 0 6px; }
+.edit-link { font-size: 11px; color: var(--text-muted); font-family: var(--sans); float: right; margin-top: 6px; }
+.edit-link a { color: var(--text-muted); }
+.edit-link:hover a { color: var(--link); text-decoration: underline; }
+
+.hatnote {
+  font-style: italic; font-size: 12.5px; color: var(--text-muted);
+  padding-left: 16px; margin-bottom: 12px;
+  border-left: 2px solid var(--border-light);
+}
+
+/* ── PHOTO THUMB ── */
+.thumb {
+  float: left; clear: left;
+  margin: 0 20px 12px 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 4px;
+  font-size: 11px; font-family: var(--sans);
+  text-align: center; color: var(--text-muted);
+  font-style: italic; max-width: 240px;
+}
+.thumb img { width: 100%; display: block; }
+.thumb-caption { padding: 4px 2px 2px; }
+
+/* ── LISTS ── */
+ul.article-list, ol.article-list { margin: 8px 0 12px 28px; line-height: 1.85; }
+
+/* ── REFERENCES ── */
+.reflist { font-size: 12px; columns: 2; column-gap: 24px; margin-top: 8px; }
+.reflist ol { padding-left: 20px; }
+.reflist li { margin-bottom: 4px; break-inside: avoid; }
+
+/* ── CATEGORIES ── */
+.categories {
+  border-top: 1px solid var(--border);
+  margin-top: 28px; padding-top: 10px;
+  font-size: 12.5px; font-family: var(--sans);
+}
+.categories-title { font-weight: 700; display: inline; }
+
+/* ── CLEARFIX ── */
+.clearfix::after { content: ''; display: table; clear: both; }
+
+/* ── RIGHT APPEARANCE PANEL ── */
+#appearance-panel {
+  width: 220px; flex-shrink: 0;
+  padding: 14px 12px;
+  border-left: 1px solid var(--border-light);
+  font-family: var(--sans); font-size: 12.5px;
+  min-height: calc(100vh - 67px);
+}
+.ap-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.ap-header strong { font-size: 14px; }
+.ap-hide { color: var(--link); font-size: 12px; cursor: pointer; }
+.ap-section { margin-bottom: 16px; }
+.ap-label { font-weight: 700; font-size: 12px; margin-bottom: 6px; color: #555; }
+.ap-option { display: flex; align-items: center; gap: 7px; margin: 4px 0; cursor: pointer; font-size: 12.5px; }
+.ap-option input[type=radio] { accent-color: #3366cc; }
+.ap-option-group { display: flex; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-top: 4px; }
+.ap-btn { flex: 1; text-align: center; padding: 5px 4px; font-size: 12px; cursor: pointer; border-right: 1px solid var(--border); color: var(--text); background: var(--bg); }
+.ap-btn:last-child { border-right: none; }
+.ap-btn.active { background: #3366cc; color: #fff; }
+.ap-btn:hover:not(.active) { background: #e8e8e8; }
+
+@media (max-width: 900px) {
+  #sidebar { display: none; }
+  #appearance-panel { display: none; }
+  .infobox { float: none; width: 100%; margin: 0 0 16px 0; }
+  .reflist { columns: 1; }
+  .thumb { float: none; max-width: 100%; margin: 0 0 16px 0; }
+}
+
+/* ── INTERVIEW SECTION ── */
+.interview-player {
+  background: #f0f4f9;
+  border: 1px solid #c8d8e8;
+  border-radius: 4px;
+  padding: 14px 16px 12px;
+  margin: 16px 0 20px;
+}
+.interview-player-label {
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
+  color: #2a4a7f; margin-bottom: 8px;
+}
+.interview-player audio { width: 100%; display: block; }
+.interview-player-meta {
+  font-family: var(--sans); font-size: 11px; color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.pull-quote {
+  float: right; clear: right;
+  width: 260px; margin: 4px 0 18px 24px;
+  border-top: 3px solid #3366cc;
+  border-bottom: 1px solid #c8d0dc;
+  padding: 10px 12px 10px;
+  font-family: var(--serif); font-size: 14.5px; font-style: italic;
+  color: #202122; line-height: 1.6;
+  background: #f8f9fa;
+}
+.pull-quote cite {
+  display: block; margin-top: 7px;
+  font-size: 11px; font-style: normal;
+  color: var(--text-muted); font-family: var(--sans);
+}
+
+.tx-wrap {
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+  background: #fafafa;
+  padding: 0;
+  margin-top: 10px;
+}
+.tx-summary {
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
+  color: var(--link); cursor: pointer;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-light);
+  list-style: none;
+  user-select: none;
+}
+.tx-summary::-webkit-details-marker { display: none; }
+.tx-summary::before { content: "▶ "; font-size: 10px; }
+details[open] .tx-summary::before { content: "▼ "; }
+.tx-body {
+  padding: 14px 16px 16px;
+  font-size: 13.5px; line-height: 1.75;
+}
+.tx-exchange { margin-bottom: 12px; }
+.tx-chris {
+  color: #3366cc; font-family: var(--sans);
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+.tx-robert {
+  color: #333; font-family: var(--sans);
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+.tx-joan {
+  color: #7a4a00; font-family: var(--sans);
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+.tx-line { margin: 0 0 2px 0; }
+.tx-hl {
+  background: #fff9d6;
+  border-left: 3px solid #e6b800;
+  padding: 5px 8px;
+  margin: 6px 0;
+  font-style: italic;
+}
+.tx-timestamp {
+  font-family: var(--sans); font-size: 10px;
+  color: #aaa; margin: 8px 0 4px;
+  font-style: normal;
+}
+
+/* ── GALLERY ── */
+.gallery-section { margin: 24px 0 30px; }
+.gallery-era {
+  margin-bottom: 28px;
+}
+.gallery-era-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.gallery-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.gallery-item {
+  display: inline-block;
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 3px;
+  cursor: pointer;
+  vertical-align: top;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  flex: 0 0 auto;
+}
+.gallery-item:hover {
+  border-color: #3366cc;
+  box-shadow: 0 1px 5px rgba(51,102,204,0.18);
+}
+.gallery-item img {
+  display: block;
+  width: 148px;
+  height: 110px;
+  object-fit: cover;
+  object-position: center top;
+}
+.gallery-item .gallery-cap {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 4px 2px 3px;
+  line-height: 1.35;
+  width: 148px;
+}
+
+/* Lightbox */
+#lb-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#lb-overlay.active { display: flex; }
+#lb-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.7);
+}
+#lb-caption {
+  color: #ddd;
+  font-family: var(--sans);
+  font-size: 13px;
+  margin-top: 14px;
+  max-width: 680px;
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 20px;
+}
+#lb-close {
+  position: fixed;
+  top: 18px; right: 24px;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  font-family: var(--sans);
+}
+#lb-close:hover { opacity: 1; }
+#lb-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  padding: 0 16px;
+}
+.lb-arrow {
+  pointer-events: all;
+  color: #fff;
+  font-size: 42px;
+  cursor: pointer;
+  opacity: 0.6;
+  user-select: none;
+  padding: 0 8px;
+  font-family: var(--sans);
+}
+.lb-arrow:hover { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ TOP HEADER ══════════════ -->
+<div id="site-header">
+  <a class="header-logo" href="#">
+    <div class="logo-globe">🌐</div>
+    <div>
+      <div class="logo-wordmark">
+        <img src="wikipedia-wordmark-en-25.svg" alt="Cyclopedia Americana"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <div class="logo-wordmark-fallback" style="display:none">Cyclopedia Americana</div>
+      </div>
+      <div class="logo-sub">The Free Encyclopedia Nobody Asked For</div>
+    </div>
+  </a>
+
+  <div class="header-search">
+    <input type="text" placeholder="Search Cyclopedia…" value="Robert Alan Cox">
+    <button>Search</button>
+  </div>
+
+  <div class="header-user">
+    <a href="#">Donate</a>
+    <a href="#">Create account</a>
+    <a href="#">Log in</a>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE WRAP ══════════════ -->
+<div id="page-wrap">
+
+  <!-- ── LEFT SIDEBAR ── -->
+  <div id="sidebar">
+    <div class="sb-section">
+      <div class="sb-heading">Navigation</div>
+      <a class="sb-link" href="#">Main page</a>
+      <a class="sb-link" href="#">Contents</a>
+      <a class="sb-link" href="#">Featured articles</a>
+      <a class="sb-link" href="#">Random article</a>
+      <a class="sb-link" href="#">About us</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-heading">Contribute</div>
+      <a class="sb-link" href="#">Help</a>
+      <a class="sb-link" href="#">Community portal</a>
+      <a class="sb-link" href="#">Recent changes</a>
+      <a class="sb-link" href="#">Upload file</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-heading">Tools</div>
+      <a class="sb-link" href="#">What links here</a>
+      <a class="sb-link" href="#">Cite this page</a>
+      <a class="sb-link" href="#">Print version</a>
+    </div>
+
+    <!-- TOC LIVES HERE -->
+    <div class="sb-section">
+      <div class="toc-sidebar">
+        <div class="toc-sidebar-title">Contents <a href="#">[hide]</a></div>
+        <ol>
+          <li><a href="#early-life">Early life</a></li>
+          <li><a href="#military">Military career</a>
+            <ol>
+              <li><a href="#army-service">Army service</a></li>
+            </ol>
+          </li>
+          <li><a href="#postmilitary">Post-military career</a>
+            <ol>
+              <li><a href="#bridge">The Smart Bridge</a></li>
+              <li><a href="#tryptophan">Tryptophan lectures</a></li>
+            </ol>
+          </li>
+          <li><a href="#abilene">Abilene squirrel campaigns</a>
+            <ol>
+              <li><a href="#feast">The Great Feast</a></li>
+              <li><a href="#legends">Associated legends</a>
+                <ol>
+                  <li><a href="#legends">Colorado Squirrel Informant</a></li>
+                  <li><a href="#legends">Single Ladies Incident</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li><a href="#personal">Personal life</a></li>
+          <li><a href="#legacy">Legacy</a></li>
+          <li><a href="#interview">Interview (2026)</a>
+            <ol>
+              <li><a href="#int-highlights">Selected highlights</a></li>
+              <li><a href="#int-transcript">Full transcript</a></li>
+            </ol>
+          </li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#references">References</a></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-heading">In other languages</div>
+      <a class="sb-link" href="#">Español</a>
+      <a class="sb-link" href="#">Deutsch</a>
+      <a class="sb-link" href="#">Français</a>
+      <a class="sb-link" href="#">Texan</a>
+    </div>
+  </div>
+
+  <!-- ── MAIN COLUMN ── -->
+  <div id="main-col">
+
+    <!-- ARTICLE TABS -->
+    <div id="article-tabs">
+      <div class="tabs-left">
+        <a class="tab active" href="#">Article</a>
+        <a class="tab" href="#">Talk</a>
+      </div>
+      <div class="tabs-right">
+        <span class="tab-icon">☆</span>
+        <span class="tab-icon">🔒</span>
+        <a href="#">Read</a>
+        <span class="tab-sep">·</span>
+        <a href="#">View source</a>
+        <span class="tab-sep">·</span>
+        <a href="#">View history</a>
+        <span class="tab-sep">·</span>
+        <a href="#">Tools ▾</a>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="content" class="clearfix">
+
+      <p class="from-wiki">From Cyclopedia Americana, the free encyclopedia nobody asked for</p>
+
+      <div class="notice">
+        <span class="notice-icon">ℹ️</span>
+        <div>This article is a <strong>parody biography</strong> created for entertainment purposes. All facts, legends, and citations are fictional. For accuracy concerns, please direct complaints to the nearest folding table. <a href="#">[Learn more]</a></div>
+      </div>
+
+      <div class="notice orange">
+        <span class="notice-icon">⚠️</span>
+        <div>This article <strong>may contain an excessive number of squirrel-related claims</strong>. Editors have debated whether this represents a <a href="#">structural problem</a> or simply an accurate reflection of the subject.</div>
+      </div>
+
+      <h1 class="page-title">Robert Alan Cox <span class="quality-badge">⭐ Dad-Class Article</span></h1>
+      <div class="page-subtitle">Not to be confused with <a href="#">Robert Allen Cox (disambiguation)</a> or anyone who asked about the bridge first.</div>
+
+      <!-- INFOBOX -->
+      <table class="infobox">
+        <caption>Robert Alan Cox</caption>
+        <tr>
+          <td colspan="2" class="infobox-photo">
+            <img src="627BA688-E91F-4366-A94B-40B59EEBC9A1_1_201_a.jpg" alt="Robert Alan Cox receiving commendation, U.S. Army, circa 1980s">
+            <div class="infobox-photo-caption">Cox (second from right, nametag: <em>COX</em>) receiving a formal commendation, U.S. Army, circa early 1980s. Two witnesses are present. Their expressions remain ambiguous.</div>
+          </td>
+        </tr>
+        <tr><td colspan="2" class="infobox-subhead">Personal information</td></tr>
+        <tr><td>Born</td><td>Circa 1956<br><span style="color:var(--text-muted)">Minnesota, U.S.<br><em>(probably near a weather system)</em></span></td></tr>
+        <tr><td>Nationality</td><td>American</td></tr>
+        <tr><td>Spouse</td><td>Joan Cox</td></tr>
+        <tr><td>Children</td><td><a href="#">Chris Cox</a></td></tr>
+        <tr><td>Parents</td><td>George Cox (father)<br>Ann Storrusten Cox (mother)</td></tr>
+        <tr><td>Ancestors</td><td>William F. Cox; Lou F. Thompson;<br>Paul Storrusten (1882–1953);<br>Olga Berge (1898–1972)</td></tr>
+        <tr><td>Known for</td><td>Squirrel trapping; bridge commentary; tryptophan oratory; tactical weather prediction; the Great Abilene Feast</td></tr>
+        <tr><td>Occupation</td><td>U.S. Army (ret.); <a class="redlink" href="#">Regional Fact Distributor</a>; Unsolicited Infrastructure Analyst</td></tr>
+        <tr><td colspan="2" class="infobox-subhead">Military service</td></tr>
+        <tr><td>Branch</td><td>🇺🇸 United States Army</td></tr>
+        <tr><td>Rank</td><td><em>Not confirmed. He has implied it was significant.</em></td></tr>
+        <tr><td>Awards</td><td>At least one commendation (photographic evidence exists); possibly others he hasn't gotten around to mentioning yet</td></tr>
+        <tr><td colspan="2" class="infobox-subhead">Notable works</td></tr>
+        <tr><td>Lectures</td><td><em>"People always blame the turkey, but actually…"</em> (annual, Thanksgiving)</td></tr>
+        <tr><td>Events</td><td>The Great Abilene Squirrel Feast (est. dates disputed)</td></tr>
+      </table>
+
+      <!-- LEAD -->
+      <p><b>Robert Alan Cox</b> (born circa 1956, Minnesota) is an American regional legend, U.S. Army veteran, <a href="#">unsolicited fact distributor</a>, and self-appointed curator of highly specific knowledge that he will share with you whether you asked or not. He served in the United States Army, where photographic evidence confirms he received at least one formal commendation. The route he took to the ceremony has not been documented. He reportedly had opinions about it.<sup><a href="#ref1">[1]</a></sup></p>
+
+      <p>In civilian life, Cox is best known for three things: his mastery of niche conversational topics, his legendary squirrel trapping campaigns near <a href="#">Abilene, Texas</a>, and his ongoing, decades-long commentary on the <a href="#">Smart Bridge in Minneapolis</a>. He is one of the foremost practitioners of the <a href="#">Midwest Dad Briefing</a> — a conversational style in which any occasion, no matter how unrelated, becomes an opportunity for an infrastructure lecture. His annual Thanksgiving address on tryptophan has run without interruption since the early 1990s. Geologists have been informed. They were not surprised.<sup><a href="#ref2">[2]</a></sup></p>
+
+      <p>He is married to <b>Joan Cox</b> and is the father of at least one documented son, <a href="#">Chris Cox</a>, Lead Coordinator of the <a href="#">Iowa Army National Guard Child &amp; Youth Program</a>, who has confirmed the bridge commentary through independent oral testimony and the look on his face at family dinners.<sup><a href="#ref3">[3]</a></sup></p>
+
+      <!-- SECTION 1 -->
+      <h2 id="early-life"><span class="edit-link">[<a href="#">edit</a>]</span>Early life and Minnesota formation</h2>
+
+      <div class="thumb" style="float:right;clear:right;margin:0 0 16px 24px;">
+        <img src="7FD1E027-0D2A-4AA3-90A7-11231139EED3.jpeg" alt="Robert Alan Cox, early 1970s" style="width:220px;display:block;">
+        <div class="thumb-caption">Cox photographed circa the early 1970s, during a period in which his hair operated as a separate, autonomous entity. Meteorologists in the Minneapolis area have noted the volume was sufficient to affect local wind patterns. The item he is holding has not been conclusively identified. He reportedly had opinions about it.</div>
+      </div>
+
+      <p>Robert Alan Cox was born in Minnesota, a state whose primary exports include stoicism, weather opinions, and the kind of person who will explain a freeway interchange to you whether or not you are in a car. The precise year of his birth is believed to be somewhere in the mid-1950s — a period historians now recognize as the golden age of a particular strain of American dadhood.<sup><a href="#ref4">[4]</a></sup></p>
+
+      <p>His father, <b>George Cox</b>, was a man of few recorded words, which may explain why Robert developed enough for both of them. His mother, <b>Ann Storrusten Cox</b>, carried the Storrusten line — a family of Norwegian descent whose patriarch, <b>Paul Storrusten</b> (1882–1953), had arrived in Minnesota with the particular quiet intensity that Scandinavians bring to cold climates and long silences. Paul's wife, <b>Olga Berge</b> (1898–1972), completed the picture: two people who had apparently crossed an ocean to find a landscape cold enough to feel like home. Young Robert showed an early aptitude for two things — acquiring specific factual knowledge and finding people who had not yet heard it — and scholars have traced both traits to the Norwegian side of the family, where opinions are held firmly and shared at length.<sup><a href="#ref5">[5]</a></sup></p>
+
+      <p>Growing up in Minnesota gave Cox what scholars call a <a href="#">"weather-readiness worldview"</a> — a lifelong orientation toward the possibility of precipitation, the load-bearing capacity of roadways, and the correct response when someone says "I think it might snow." For the record, Cox has maintained for over four decades that the correct response is considerably more involved than you think. Paul Storrusten, had he lived to hear it, would reportedly have agreed, and then added several points of his own.<sup><a href="#ref6">[6]</a></sup></p>
+
+      <!-- SECTION 2 -->
+      <h2 id="military"><span class="edit-link">[<a href="#">edit</a>]</span>Military career</h2>
+
+      <h3 id="army-service">Army service and commendation</h3>
+
+      <div class="thumb">
+        <img src="627BA688-E91F-4366-A94B-40B59EEBC9A1_1_201_a.jpg" alt="Cox receiving commendation">
+        <div class="thumb-caption">Cox (second from right) receives a formal commendation from a senior U.S. Army officer. The room contained a flag, a framed photograph, and two witnesses who appear to be deciding whether to make eye contact with the camera.</div>
+      </div>
+
+      <p>Cox served in the <a href="#">United States Army</a> during a period he has described, when the subject arises naturally or unnaturally, as "an important time." Photographic evidence confirms he received at least one commendation, formally presented by a senior officer in a room containing a <a href="#">U.S. flag</a>, a framed landscape, and two witnesses who appear to be deciding whether to make eye contact with the camera.<sup><a href="#ref7">[7]</a></sup></p>
+
+      <p>His exact rank remains unverified in any public record. Cox has not volunteered this information unprompted. Several family members have noted this is the only topic he has not volunteered unprompted.<sup><a href="#ref8">[8]</a></sup></p>
+
+      <p>What is not in dispute is that military service left a lasting mark on Cox's civilian personality — specifically, his ability to <em>hold a position under sustained conversational pressure</em>, deliver a full briefing without waiting for one to be requested, and identify a structural weakness in any plan, bridge, or turkey preparation within ninety seconds of encountering it.<sup><a href="#ref9">[9]</a></sup></p>
+
+      <!-- SECTION 3 -->
+      <h2 id="postmilitary"><span class="edit-link">[<a href="#">edit</a>]</span>Post-military career and expertise</h2>
+
+      <div class="thumb" style="float:right;clear:right;margin:0 0 16px 24px;">
+        <img src="73A02222-E5D2-4403-BDF6-F2D22890286D.jpeg" alt="Robert Alan Cox, late 1970s" style="width:220px;display:block;">
+        <div class="thumb-caption">Cox, photographed in the late 1970s, wearing what is either a kimono or a floral robe — a garment that raises significant questions about the same man who would later, within a single decade, ask a retail clerk for <em>long handled underwear</em> in his most committed backwoods register. No reconciliation of these two fashion eras has been attempted. Historians have agreed, by silent consensus, to let it stand.</div>
+      </div>
+
+      <p>Following his service, Cox entered what scholars have called his <em>Civilian Briefing Phase</em> — a period in which the full organizational power of a military mind was applied to topics including regional infrastructure, the thermodynamics of poultry, and the correct way to merge onto a state highway. His documented areas of expertise include, but are not limited to:<sup><a href="#ref10">[10]</a></sup></p>
+
+      <ul class="article-list">
+        <li>The <a href="#">Smart Bridge in Minneapolis</a> and its broader implications</li>
+        <li>The biochemical folklore of turkey and human sleepiness</li>
+        <li>Topics no one else knew were topics</li>
+        <li>Beginning a story in 1987 and arriving at the point sometime after dessert</li>
+        <li>Seasonal weather prediction (accuracy: high; invitation to predict: not required)</li>
+        <li>Squirrel trapping, preparation, and associated culinary philosophy</li>
+        <li>Directions calibrated to landmarks that no longer exist</li>
+      </ul>
+
+      <h3 id="bridge">The Smart Bridge commentary</h3>
+
+      <p>Cox's most sustained public intellectual contribution is his ongoing commentary on the <a href="#">I-35W Saint Anthony Falls Bridge</a> in Minneapolis, known in Cox-adjacent circles as "the Smart Bridge." According to family sources, Cox has introduced this subject into conversations about traffic, weather, construction, road trips, sandwiches, and at least one wedding reception at which the bridge was not, by any reasonable measure, a relevant topic.<sup><a href="#ref11">[11]</a></sup></p>
+
+      <p>Oral historians remain divided on a single question: has anyone ever asked about the bridge first? No verified instance has been recorded.<sup><a href="#ref12">[12]</a></sup></p>
+
+      <h3 id="tryptophan">The annual tryptophan lectures</h3>
+
+      <p>Cox is equally celebrated for his <em>Annual Thanksgiving Educational Address on Tryptophan and the Unfair Vilification of Turkey</em> — a lecture he delivers each November with the gravity of a Nobel Prize acceptance and the energy of a man who has been waiting eleven full months to make this exact point. It opens, reliably, with: <em>"People always blame the turkey, but actually…"</em> From there, it covers the science of amino acids, the failures of holiday folklore, and what Cox views as the media's irresponsible coverage of sleepiness. Plan accordingly.<sup><a href="#ref13">[13]</a></sup></p>
+
+      <p>Family sources confirm that no Thanksgiving plate may be served until the opening statement has been delivered. Scholars continue to debate whether this constitutes a <a href="#" class="redlink">hostage situation</a> or simply <a href="#">hospitality</a>.<sup><a href="#ref14">[14]</a></sup></p>
+
+      <!-- SECTION 4 -->
+      <h2 id="abilene"><span class="edit-link">[<a href="#">edit</a>]</span>The Abilene squirrel campaigns</h2>
+
+      <p>Among the more colorful chapters of Cox's biography are his squirrel trapping campaigns near <a href="#">Abilene, Texas</a>, which generated enough regional folklore to fill their own subsection in this article and, according to at least one local source, "part of a wall at someone's cousin's place."<sup><a href="#ref15">[15]</a></sup></p>
+
+      <p>The historical record is fuzzy on specifics. What every account agrees on: Cox trapped squirrels in impressive quantities, prepared them with a seriousness usually reserved for diplomatic negotiations, and shared the results with a community that came to regard the whole operation as somewhere between a harvest festival and a civic institution.<sup><a href="#ref16">[16]</a></sup></p>
+
+      <h3 id="feast">The Great Abilene Squirrel Feast</h3>
+
+      <p>The centerpiece of Cox's Abilene legacy is <b>The Great Abilene Squirrel Feast</b> — a community meal whose precise date, scale, and number of attending squirrels (pre-preparation) has been revised upward with every retelling. The most widely accepted account holds that the feast featured folding tables extending "nearly to county lines," at least six cast-iron preparations, and an aroma that <em>"rolled across the fields like weather."</em><sup><a href="#ref17">[17]</a></sup></p>
+
+      <p>More embroidered versions claim Cox cooked squirrel in twelve separate skillets simultaneously, each with a distinct seasoning, <em>"just to prove there's more than one road to glory."</em> The skillet count has never been independently verified. No one has challenged it in person.<sup><a href="#ref18">[18]</a></sup></p>
+
+      <p>The most dramatic account holds that for the largest feast, Robert did not send invitations. He rang an old iron bell. People appeared from surrounding properties "as if summoned by destiny, gravy, and civic duty." Dogs from neighboring farms reportedly arrived in solemn anticipation.<sup><a href="#ref19">[19]</a></sup></p>
+
+      <h3 id="legends">Associated legends</h3>
+
+      <p>The Abilene campaigns produced a secondary body of folklore that local historians have catalogued under the working title <em>Legends of Robert Alan Cox</em>:</p>
+
+      <p><b>The Squirrel Treaty of Abilene.</b> Following Cox's trapping campaigns, legend holds that the remaining squirrel population entered an unspoken peace agreement with him. They no longer scattered when he walked by. Instead, they watched from the trees with what eyewitnesses described as "professional respect."<sup><a href="#ref20">[20]</a></sup></p>
+
+      <p><b>The Pot That Fed a Zip Code.</b> One account describes a squirrel stew prepared in a vessel requiring "either an oar or retired farm equipment" for stirring. Provenance of the equipment is unclear. The story ends with no one hungry and everyone having opinions about zinc.<sup><a href="#ref21">[21]</a></sup></p>
+
+      <p><b>The Abilene Hospitality Standard.</b> For years after, regional residents measured gatherings against Cox's feast. A decent meal was "pretty good." A strong meal was "church-good." A legendary spread was <em>"Robert Cox near Abilene good"</em> — the highest culinary rank available in the region, and possibly the country.<sup><a href="#ref22">[22]</a></sup></p>
+
+      <p><b>The Frontier Protein Symposium.</b> In the version family members consider most accurate, Cox did not merely feed his guests. He also lectured them — simultaneously — on protein efficiency, cooking temperatures, regional wildlife patterns, and the failures of modern seasoning shortcuts. No one recalls the exact recipes. Everyone recalls the lecture. It was longer than the meal, and was considered part of the entertainment.<sup><a href="#ref23">[23]</a></sup></p>
+
+      <p><b>The Colorado Squirrel Informant.</b> Several days into a solitary camping trip deep in the Colorado woods — after long hours of silence, coffee boiled over open fire, and the peculiar clarity that comes from being alone among the pines — Robert reportedly noticed a squirrel that did not behave like the others. It did not dart away. It did not chatter from a safe branch. It remained nearby with the stillness of something observant. Almost assessing him.</p>
+
+      <p>Robert, being Robert, began speaking to it.</p>
+
+      <p>At first, by most accounts, this was harmless — the rambling of a man alone in the woods. But in time he became convinced the squirrel was not merely listening. It was replying. Through repeated sounds, deliberate pauses, and hand motions, Robert believed he had worked out a rudimentary form of communication. He would later describe the process as <em>"pattern recognition in woodland speech."</em><sup><a href="#ref23c">[23c]</a></sup></p>
+
+      <p>The squirrel, in his telling, was no common camp thief. It was an ancient creature of remarkable intelligence — one whose line stretched back through generations of forest memory. Robert came to believe its ancestors, or possibly the squirrel itself depending on how boldly the story is told, had once observed Lewis and Clark moving through the frontier.</p>
+
+      <p>Seated beside the fire as dusk settled over the trees, Robert reportedly received from this tiny historian fragments of forgotten trails, weather signs, and frontier impressions preserved not in books but in the living memory of the wild. By the end of the week, he no longer described the animal as a squirrel. He described it as <em>"an old mountain informant in fur"</em> — a keeper of ancient woodland knowledge who had, for reasons known only to providence, chosen Robert Alan Cox as the first man worthy of hearing it.</p>
+
+      <p>Scholars have declined to verify this account. Squirrel historians could not be reached for comment.<sup><a href="#ref23d">[23d]</a></sup></p>
+
+      <p><b>The Long Handled Underwear Incident.</b> On a day now preserved in family memory, Cox entered a retail establishment in search of thermal undergarments. Rather than requesting "long johns" — the commonly accepted term — he approached the counter and asked, in what witnesses describe as his most committed backwoods register: <em>"Ma'am… do you have any long handled underwear?"</em> The clerk went still. Cox remained entirely confident he had used the correct terminology. He had. Just not in this century. Family members were left occupying the narrow space between secondhand embarrassment and genuine spiritual collapse. The incident earned him the fishing-trip nickname <em>Captain Longhandle</em>, bestowed with great affection and absolutely no mercy, invoked to this day whenever Cox produces terminology that sounds like it arrived from a frontier hardware catalog dated 1947.<sup><a href="#ref23b">[23b]</a></sup></p>
+
+      <div class="thumb" style="float:right;clear:right;margin:0 0 16px 24px;">
+        <img src="E5DBFF68-BE2A-4470-9068-B30A5BADEDCB.jpeg" alt="Cox on fishing trip" style="width:240px;display:block;">
+        <div class="thumb-caption">Cox (second from right, green sunglasses) at what is believed to be one of the legendary fishing trips, holding what witnesses later described as the largest catch of the morning. The mood, by this point, had already turned theatrical.</div>
+      </div>
+
+      <p><b>The Single Ladies Incident.</b> On one of Robert Alan Cox's now-legendary boys' fishing trips, somewhere between the first overconfident cast and the evening discussion of bait strategy, an event occurred that would ripple far beyond the dock. The mood around camp had grown loose and theatrical — the kind only produced by open water, tall tales, and the complete absence of anyone willing to say, <em>"Let's not do this."</em> At some point, with a confidence wholly unsupported by rhythm, Robert stepped into the center of camp and began demonstrating what he insisted was <em>"a real routine."</em><sup><a href="#ref23e">[23e]</a></sup></p>
+
+      <p>What followed was a fully committed performance of <em>All the Single Ladies</em>, complete with sharp hand motions, dramatic turns, and a level of sincerity that elevated the whole thing from ordinary embarrassment into something approaching art. The assembled fishermen, stunned into silence, could do little but watch history happen.</p>
+
+      <p>Someone recorded it. Someone else — perhaps not fully understanding the forces they were about to unleash — later posted it online. Against all reason, the clip spread. Before long, Robert Alan Cox's lakeside routine had become a minor viral sensation, celebrated not for technical excellence but for the rare and powerful spectacle of a man dancing as if no one was watching, when in fact the entire internet eventually was. The performance is credited with briefly uniting several corners of TikTok, inspiring imitation videos, and establishing Robert, however temporarily, as an unlikely patron saint of unbothered choreography.<sup><a href="#ref23f">[23f]</a></sup></p>
+
+      <p>He has not addressed the choreography's relationship to the Smart Bridge. Scholars await a statement.<sup><a href="#ref23g">[23g]</a></sup></p>
+
+      <!-- SECTION 5 -->
+      <h2 id="personal"><span class="edit-link">[<a href="#">edit</a>]</span>Personal life and domestic operations</h2>
+
+      <div class="thumb" style="float:right;clear:right;margin:0 0 16px 24px;width:280px;">
+        <div style="width:280px;height:210px;overflow:hidden;position:relative;">
+          <img src="61F5A4CB-2F86-4B96-B5E5-05AA5B9BD0DD.jpg" alt="Robert Alan Cox, recent photograph"
+               style="position:absolute;width:280px;height:210px;top:50%;left:50%;transform:translate(-50%,-50%) rotate(180deg);object-fit:cover;">
+        </div>
+        <div class="thumb-caption">Cox in a recent photograph, wearing an expression family members describe as a common occurrence: mildly confused, entirely sincere, and likely already preparing an answer to a question no one has asked yet.</div>
+      </div>
+
+      <p>Cox has a preferred chair, positioned with what family members call "strategic intentionality" — offering clear sightlines to the television, the front door, and any conversational cluster that might benefit from supplementary facts. The chair has been recognized by at least three household thermostats as an authorized opinion source.<sup><a href="#ref24">[24]</a></sup></p>
+
+      <p>He enjoys seasonal weather analysis, historical side-notes delivered at non-historical moments, and standing in kitchens with one thumb hooked in a pocket while delivering statements that sound, as one relative put it, "partly like folklore and partly like civil engineering."<sup><a href="#ref25">[25]</a></sup></p>
+
+      <p>Cox maintains what family sources describe as an internal database of unrequested facts, believed to refresh automatically every November. He holds the family record for saying "I read an article about this" with no further citation — a streak that began no later than 1994 and shows no signs of concluding.<sup><a href="#ref26">[26]</a></sup></p>
+
+      <p>Among his other documented domestic achievements:</p>
+      <ul class="article-list">
+        <li>Correctly predicting that "it might get slippery out" on an estimated 4,300 separate occasions</li>
+        <li>Once pausing a movie to explain a bridge</li>
+        <li>Giving directions that begin with a building that was torn down in 2003</li>
+        <li>Referring to any restaurant meal served in under fifteen minutes as "suspiciously efficient"</li>
+        <li>Telling a story that started with a cousin from Duluth and ended with agricultural zinc prices</li>
+        <li>Claiming to have improved upper Midwest traffic flow by selecting a different lane</li>
+      </ul>
+
+      <!-- SECTION 6 -->
+      <h2 id="legacy"><span class="edit-link">[<a href="#">edit</a>]</span>Legacy</h2>
+
+      <p>Robert Alan Cox remains an enduring figure in the field of <a href="#" class="redlink">Specific Dad Knowledge</a> — a discipline defined by its practitioners' ability to be simultaneously correct, unsolicited, and impossible to interrupt during a good part.<sup><a href="#ref27">[27]</a></sup></p>
+
+      <p>His military service gave him discipline, resourcefulness, and the ability to deliver a full briefing to a room that had not realized it was receiving one. The decades that followed transformed those skills into something the Midwest produces in rare but remarkable quantities: a man with a strong opinion about everything structural, biological, and culinary, and the conversational stamina to share it on any occasion — including funerals, minor traffic delays, and the opening credits of movies.<sup><a href="#ref28">[28]</a></sup></p>
+
+      <p>His son, Chris Cox, inherited Cox's commitment to community service, though he chose to express it through programming for military youth rather than squirrel-based feasting. Scholars note this represents an evolution of the underlying impulse, not a departure from it.<sup><a href="#ref29">[29]</a></sup></p>
+
+      <p>Historians, relatives, and innocent bystanders all agree on one thing: Robert Alan Cox may not always have been on topic. But he was <em>never</em> unprepared to become so.<sup><a href="#ref30">[30]</a></sup></p>
+
+      <!-- SECTION: INTERVIEW -->
+      <h2 id="interview"><span class="edit-link">[<a href="#">edit</a>]</span>Interview (January 2026)</h2>
+
+      <p>On January 9, 2026, Cox sat for an extended oral history interview conducted by his son, <strong>Chris Cox</strong>, at Cox's home in Ankeny, Iowa. The interview spans approximately 45 minutes and covers the people, memories, losses, adventures, and lessons that have defined Cox's life. It is believed to represent the most complete first-person account of Cox's philosophy to date, and the only recorded instance of Cox being formally asked a question before answering it.<sup><a href="#ref-int1">[31]</a></sup></p>
+
+      <div class="interview-player">
+        <div class="interview-player-label">🎙️ Listen: Full Interview — Robert Alan Cox &amp; Chris Cox</div>
+        <audio controls>
+          <source src="APP6033070-D0637FEF-DD3A-424E-95EA-53CA9AAF06F5.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="interview-player-meta">Recorded January 9, 2026 · Ankeny, Iowa · Duration: 44:59 · Interviewer: Chris Cox</div>
+      </div>
+
+      <h3 id="int-highlights">Selected highlights</h3>
+
+      <div class="pull-quote">
+        "He epitomized what you call a gentleman. He truly was a gentleman. I've never heard him say an angry word to anyone."
+        <cite>— On his grandfather, William Floyd Cox</cite>
+      </div>
+
+      <p>The interview opens with Cox describing the person he considers the kindest in his life: his paternal grandfather, <strong>William Floyd Cox</strong> — known simply as Floyd — of Texas. Cox describes him as a man of quiet demeanor — soft-spoken, gentle, and entirely without anger — who worked on a ranch and took young Bob everywhere with him. "He just cared about his family and other people," Cox recalled. "He never wanted to be a person that would hurt anyone." Floyd's inseparable companion was a Chihuahua named Paco, who — Cox noted — shared his owner's distinguished bald spot. The dog reportedly passed not long after his grandfather did.</p>
+
+      <div class="pull-quote">
+        "My salvation was when I started helping other people. When I started serving other people. That gave me purpose again."
+        <cite>— On recovering from loss</cite>
+      </div>
+
+      <p>The interview's most moving passage concerns the death of Cox's infant daughter, <strong>Amanda Kelsey Cox</strong>, which Cox identifies as the most difficult period of his life. "It took ten years to recover from her," he said. He described standing in a blizzard outside the hospital, on his knees in prayer, the moment the family made the decision to remove her from life support. Cox said he was "really angry at God for a long time," but that his path through grief was found not in solitude but in service to others. The birth of his son Nathan provided a turning point. He visits Amanda's grave at least once a year and finds comfort in the belief that he will meet her again — grown — in eternity.</p>
+
+      <div class="pull-quote">
+        "Your job is a fleeting thing. The people at work will forget you the minute you walk out that door anyway. But your family is where you find your joy. Your reason for living."
+        <cite>— On the importance of family</cite>
+      </div>
+
+      <p>On the subject of lessons learned, Cox cited <em>patience</em> as his most hard-won virtue — one he said he entirely lacked when young — alongside honesty, fairness, and the primacy of family. He reflected that his forties brought a shift in perspective: from career to kinship. He added that his counsel to future generations is not to dwell on "what would have been or could have been or should have been," but to <em>"focus on trying to live right now."</em></p>
+
+      <p>The interview also covered lighter ground: skiing off a cliff at Breckenridge at age 19 ("I didn't make the turn"), getting rolled by an ocean wave with Chris ("you had this wild scared look in your eye"), Adam wrecking the car ("he wasn't hurt — he was just brokenhearted about it"), Nathan's career as a cookie thief ("the genius grin on his face"), and the Danube river cruise with Joan and decades-old friends. Cox closed with advice for any descendant who might one day listen: <em>"Just love a lot."</em> Chris's final words shifted tone deliberately — jokes aside — from the warm ribbing of family life to a sincere tribute: "Being able to laugh at yourself is one of the most humble things a person can do. Life is short, and you have lived that fully. One of the greatest gifts you've given us is that you bring laughter and fun into our lives — you always have. Know that Robert Alan Cox was not just wise, not just giving — he was fun. And that matters more than people realize."</p>
+
+      <h3 id="int-transcript">Full transcript</h3>
+
+      <p class="hatnote">Lightly edited for readability. Speaker labels added. Notable passages highlighted.</p>
+
+      <div class="tx-wrap">
+        <details>
+          <summary class="tx-summary">Show full transcript (approx. 45 min · January 9, 2026)</summary>
+          <div class="tx-body">
+
+            <div class="tx-timestamp">[0:00]</div>
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">All right, so we're recording right now. I'm going to start by introducing myself just so that anybody that listens to this knows who we are. I'm Chris Cox. I am 43 years old — sometimes I forget that. Today's date is the 9th of January, 2026. I'm speaking to my dad here, Bob Cox, and we're at his home in Ankeny. So we'll start with the first question.</p>
+              <p class="tx-line">Can you tell me about a person who has been kindest to you in your life?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">So it would be my dad's father — my grandfather. He was just a very gentle, gentle person. Hardly ever talked. But he was just kind. William Floyd Cox — they called him Floyd, just Floyd — because there was another brother named William too. My dad was George Cox.</p>
+              <p class="tx-line">My grandfather Floyd grew up in Texas, out in the Abilene area, and he worked on a ranch there. Whenever I was little — I think he died when I was 16 or 17 — he always took me with him, probably when I was seven or eight years old.</p>
+              <p class="tx-hl">"He was just a very kind person. I've never heard him say an angry word to anyone. He epitomized what you call a gentleman. He truly was a gentleman."</p>
+              <p class="tx-line">I think it's just the way he lived his life. He cared about his family and cared about other people, and never wanted to be a person that would hurt anyone. Always put others first.</p>
+              <p class="tx-line">Floyd had this little Chihuahua called Paco, and my grandfather had a little bald spot on top of his head — so did Paco. They were inseparable. I think when my grandfather passed, Paco passed away shortly after that.</p>
+              <p class="tx-line">His favorite snack at night, usually watching TV, was a glass of buttermilk with white bread in it and sugar.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">That sounds terrible.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">I suppose it was one of those Depression-era things he fell in love with because it was probably all that was available. But he was an amazing guy.</p>
+            </div>
+
+            <div class="tx-timestamp">[8:00]</div>
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">Can you tell me about one of your most difficult memories?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-hl">"The death of my daughter, Amanda Kelsey Cox. That was the most difficult period of my life. And it took ten years to recover from her. Ten years."</p>
+              <p class="tx-line">Nathan — my son Nathan coming along — helped. When he was born, it gave me the ability to move on again. I was really angry at God for a long time about that.</p>
+              <p class="tx-line">Now it hits me more on her birthday and on the day she died. But I can deal with it the other times. I don't think about it all the time like I did when she first passed.</p>
+              <p class="tx-line">I always spend time thinking about what would have been — which is probably unproductive. But it's kind of a wish, a hope. And I find comfort in thinking that I'll see her again for sure, and she'll be like grown. She'll be a person. I believe strongly there's a soul to everyone, and she has a grown-up soul. It'll be crazy to meet her in heaven.</p>
+              <p class="tx-line">I always kind of felt that perhaps — as tough as it was — maybe God needed her. And so he took her early. But it wasn't easy for me. I just really had a tough time with it.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">Is there anything you would do differently — not to change the situation, but to help somebody listening who might be going through something difficult?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-hl">"My salvation was when I started helping other people. When I started serving other people. That gave me purpose again. It didn't do away with it, but it just made it easier to cope with."</p>
+              <p class="tx-line">And when my back was so bad and I was in so much pain all the time, I had those fleeting thoughts of — it's not worth going on. But in the end I did keep going, and it did get better. And that's kind of the case in every downtime in my life. I'd just put my head down and got through it. Because it does get better. It always gets better.</p>
+            </div>
+
+            <div class="tx-timestamp">[18:00]</div>
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">One thing I'm hearing is that all of these hard times have taught you to look outside yourself and focus on others. What are some other lessons you've learned? Were those hard times wasted moments?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">Oh, they were character builders. They're what made me who I am today. I'm much more philosophical about things now — I think that's because with age and life experience you tend to mellow.</p>
+              <p class="tx-hl">"You can't appreciate the really good times — those really high points in your life — if you've never had the low valleys. The point I took away: it's always temporary. Even our life is temporary. It's a fleeting moment in eternity. So if you keep an eternal perspective on your life, that's important."</p>
+              <p class="tx-line">You think about the worst moment in history — Jesus dying on the cross — which was actually the best moment in history, because that's what gave us hope that there is life after death. Only God can make something as ugly as murder on a cross into something as beautiful as bringing his people into himself.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">What are some of the most important lessons you've learned in life?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-hl">"Honesty. Fairness. Patience — oh, patience is a big one. Most things come to you with patience. They will work themselves out. Things will get better, but you've got to have patience. I had no patience when I was young."</p>
+              <p class="tx-line">And the value of friends. And most importantly — the value of my family. When I was younger, my whole focus seemed to be wrapped up in work. And then around my forties — about your age — I realized the importance of family. They're the only lasting thing. Your job is a fleeting thing. The minute you walk out that door, they're gonna forget you anyway. But your family is where you find your joy. Your reason for living.</p>
+            </div>
+
+            <div class="tx-timestamp">[26:00]</div>
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">Can you remember a time when you felt most alone?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">I was in Korea. It was Christmas. I had guard duty, and I remember being about two o'clock in the morning out there walking in the freezing cold, thinking about home. I felt really lonely. I was 18 years old. I just wanted to cry. I was so far away from home. And I was wondering if I hadn't made the biggest mistake of my life.</p>
+            </div>
+
+            <div class="tx-timestamp">[29:00]</div>
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">If you could hold onto one memory from your life forever, which would it be?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">Gosh, that's really hard. The birth of my children. You guys getting married. Me getting married. Those are the happiest times. And I've had a lot of adventures. Whether it's hiking, or — I do some stupid things. Went off a cliff once, skiing.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">Tell that one — it never gets old.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">That was in Breckenridge, at the ski resort. I think it was a double black diamond. Jack was with me and I was trying to show off — I was about 19, so I was invincible. I was skiing through the tree line on this trail, and apparently at the bottom there was a sharp right turn. If you didn't make the turn, you went off the cliff. So I didn't make the turn and I went off the cliff. I didn't hurt myself, but it scared the crap out of me.</p>
+            </div>
+
+            <div class="tx-timestamp">[33:00]</div>
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">Other memories from when we were kids — you taking us sledding.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">We were in Nebraska and there's just not a lot of hills. So we found this one that was really steep, and before I would let you and Adam go down it, I wanted to go first to see how dangerous it was. So I go screaming down this hill and hit a rock I didn't see — went flying up into the air and broke my tailbone. And I crawled back up that embankment.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">And from my perspective, I'm just a kid — it's all about me — and I'm like, "I didn't get to go sledding!"</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">I tore a hole in the saucer. It wasn't going back down that hill.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">The boogie boarding trips to Chincoteague Island — those always stick out for me.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">We would go boogie boarding all day. I remember your legs would just be rubber at the end of the day. Driving away from the beach past the sand dunes, you'd look at them and they'd look like waves coming at you — because you'd been watching waves all day.</p>
+              <p class="tx-line">And the first time I took you to the ocean — you were maybe nine or ten, you'd never been in a wave before. This big old wave comes in and just slams you down, rolled right over you. I saw it happening and knew this was not going to be good. I ran over and pulled you out. And you had this wild scared look in your eye.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">From my perspective — I just saw blur, and then I see a figure coming to grab me. It knocked the wind out of me. And then we just kept going back out all day long.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">What's better than boogie boarding with your boys?</p>
+            </div>
+
+            <div class="tx-timestamp">[38:00]</div>
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">What about a memory with Nathan that sticks out?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">Oh gosh, there's so many. The cookie stealer — that's the first thing that came to my mind. The genius grin on his face. And he always looked up to you and Adam. When you guys would come visit, he was in seventh heaven. We got a picture with William Shatner at Comic Con. He'd be in his room reading Captain Underpants and you'd just hear him chuckling. I've never seen anyone laugh out loud at a book before.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">Favorite memory with Joan?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-line">We had a great time going on the river cruise down the Danube — through Germany, Austria, Hungary, the Czech Republic. We were with friends we've known for 30 or 40 years. That was this last year, in March. And just — being retired, you slow down, you do what you want. I'd say the best part of my life is right now.</p>
+            </div>
+
+            <div class="tx-timestamp">[42:00]</div>
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">For future generations — anyone in the family listening to this, years or maybe centuries from now — is there any wisdom you would want to pass on? What would you want them to know?</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-robert">Robert</div>
+              <p class="tx-hl">"My happiest times in life have been when I'm serving others. I get so much more out of it than I give. And having patience — with those you love and those you don't love. And then just love. Yeah, just love a lot."</p>
+              <p class="tx-line">It's a wasted energy to think back and have regrets. It's just not worth the effort. So I try not to spend a lot of time thinking about what would have been, or could have been, or should have been. Focus on trying to live right now.</p>
+            </div>
+
+            <div class="tx-exchange">
+              <div class="tx-chris">Chris</div>
+              <p class="tx-line">You didn't want to pass on a pearl — but you gave a pearl.</p>
+              <p class="tx-line">This last one is more for me. As your son, the thing I've gained the most from you is the lesson of generosity — just being a giving person. That's been a hundred percent true. Serving others, like you said.</p>
+              <p class="tx-line">And professionally, you always said: <em>let your work speak for itself.</em> Don't toot your own horn. Get under the car with the mechanics. Just do your job well, and don't get caught up in the drama of the office. Another huge waste of energy is comparing yourself to others. We're all different. Focus on what you're doing and try to do it well.</p>
+              <p class="tx-hl">"The other value that I've always appreciated about you — and anybody in our family listening would know this is a hundred percent true — is that you are always the brunt of the joke. If there are any jokes being made, they're about Dad. And I say that as a funny thing, but also as a humbling thing. Because you take it, and you laugh, and you just keep going."</p>
+              <p class="tx-line" style="margin-top:14px;padding-top:12px;border-top:1px solid #ddd;font-style:italic;color:#555;">— <em>Jokes aside —</em></p>
+              <p class="tx-hl" style="border-left-color:#3366cc;background:#eef3fb;">"I've learned from you that being able to laugh at yourself is one of the most humble things a person can do. Life is short — and you have lived that fully. And one of the greatest gifts you've given to me, Adam, Nathan, and the grandkids is that you bring laughter and fun into our lives. You always have. So to anyone in the future who is listening to this: know that Robert Alan Cox was not just wise, not just giving — he was fun. And that matters more than people realize."</p>
+            </div>
+
+          </div>
+        </details>
+      </div>
+
+      <!-- GALLERY -->
+      <h2 id="gallery"><span class="edit-link">[<a href="#">edit</a>]</span>Gallery</h2>
+      <p class="hatnote">A photographic record of Robert Alan Cox across time — offered here without legal liability for any grins, fishing claims, or dance moves depicted.</p>
+
+      <div class="gallery-section">
+
+        <!-- ERA 1: THE EARLY YEARS -->
+        <div class="gallery-era">
+          <div class="gallery-era-title">The Early Years</div>
+          <div class="gallery-row">
+            <div class="gallery-item" onclick="openLb(this)" data-src="7FD1E027-0D2A-4AA3-90A7-11231139EED3.jpeg" data-cap="Robert Alan Cox, circa early 1970s. The hair operated as a semi-autonomous weather system. Meteorologists in the Minneapolis area have noted the volume was sufficient to affect local wind patterns. He is holding something and he has opinions about it.">
+              <img src="7FD1E027-0D2A-4AA3-90A7-11231139EED3.jpeg" alt="Robert, early 1970s">
+              <div class="gallery-cap">Early 1970s — the afro era.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="73A02222-E5D2-4403-BDF6-F2D22890286D.jpeg" data-cap="Robert in the late 1970s, wearing what appears to be either a kimono or a floral robe — the same man who would later, within a single decade, request 'long handled underwear' in a retail establishment with complete sincerity. Historians have agreed not to attempt a reconciliation of these two eras.">
+              <img src="73A02222-E5D2-4403-BDF6-F2D22890286D.jpeg" alt="Robert, late 1970s">
+              <div class="gallery-cap">Late 1970s — the fashion interlude.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="627BA688-E91F-4366-A94B-40B59EEBC9A1_1_201_a.jpg" data-cap="Cox (nametag: COX) receives a formal commendation from a senior U.S. Army officer. The room contained a flag, a framed photograph, and two witnesses who appear to be deciding whether to make eye contact with the camera. His rank has never been volunteered unprompted. This is, notably, the only topic he has not volunteered unprompted." data-pos="center">
+              <img src="627BA688-E91F-4366-A94B-40B59EEBC9A1_1_201_a.jpg" alt="Army commendation" style="object-position: center center;">
+              <div class="gallery-cap">U.S. Army — formal commendation.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERA 2: THE FAMILY MAN -->
+        <div class="gallery-era">
+          <div class="gallery-era-title">The Family Man</div>
+          <div class="gallery-row">
+            <div class="gallery-item" onclick="openLb(this)" data-src="nck-rss4SYO31bwtkFRmcQ.jpeg" data-cap="Robert and Nathan, outdoors. Robert is mid-sentence, which is his resting state. Nathan's expression suggests this particular sentence has been going on for a while, and he is calculating when it will arrive at the point.">
+              <img src="nck-rss4SYO31bwtkFRmcQ.jpeg" alt="Robert and Nathan">
+              <div class="gallery-cap">Robert & Nathan — matching energy.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="RmSi3p_fSjCtkJ2Pk6oIrA.jpeg" data-cap="Robert with Chris, Adam, and Nathan outside a cabin. All four are smiling, which means either something very funny just happened or Robert just finished a story. Available evidence suggests both.">
+              <img src="RmSi3p_fSjCtkJ2Pk6oIrA.jpeg" alt="Robert with his sons">
+              <div class="gallery-cap">With the boys at the cabin.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="8jF4pYaMSE2abu84yr4aKA.jpeg" data-cap="Family fondue night. Robert is visible near the right, the only person at the table who has already explained how fondue works to everyone present, unprompted. The group appears cheerful. The table is chaotic in the best way. This is what home looks like.">
+              <img src="8jF4pYaMSE2abu84yr4aKA.jpeg" alt="Family fondue dinner">
+              <div class="gallery-cap">Family fondue night — full house.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="rC60BfT1QriOqqnUyMbfFA.jpeg" data-cap="Robert at a summer outdoor gathering, surrounded by family across multiple generations. An American flag is visible in the background, which is either coincidental or exactly on brand. Grandchildren are in attendance. This is the kind of afternoon that gets remembered.">
+              <img src="rC60BfT1QriOqqnUyMbfFA.jpeg" alt="Summer family gathering">
+              <div class="gallery-cap">Summer gathering — all generations present.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="m_DqO4DcS0uRNJEQZM6ysw.jpeg" data-cap="The Cox family in matching 'Family Faith' shirts, assembled for a reunion. The grandchildren are distributed across available shoulders and laps in a manner that suggests the photo was organized by someone optimistic about logistics. Robert, bottom right, is smiling the smile of a man who has exactly where he wants to be.">
+              <img src="m_DqO4DcS0uRNJEQZM6ysw.jpeg" alt="Cox family reunion">
+              <div class="gallery-cap">Cox Family Faith reunion — all shirts accounted for.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="XdaepNLqRAWnnBjzBBiNIg.jpeg" data-cap="Robert and Joan at Nathan's graduation. Nathan, in cap and gown, stands between his parents under a shade tree. Robert is wearing a National Park cap. Joan is smiling. Nathan looks like a man who has just accomplished something, which he has. Robert has reportedly already begun planning the post-ceremony briefing.">
+              <img src="XdaepNLqRAWnnBjzBBiNIg.jpeg" alt="Nathan's graduation">
+              <div class="gallery-cap">Nathan's graduation — proud parents.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERA 3: GRANDPA -->
+        <div class="gallery-era">
+          <div class="gallery-era-title">Grandpa</div>
+          <div class="gallery-row">
+            <div class="gallery-item" onclick="openLb(this)" data-src="YZ7WProxRUuodF1R2wVwbA.jpeg" data-cap="Robert with two grandchildren at an outdoor picnic table, golden hour light behind them. All three are leaning on the table with the easy comfort of people who have nowhere else to be. Robert is wearing sunglasses and the smile of a man who has discovered that grandchildren are the upgrade.">
+              <img src="YZ7WProxRUuodF1R2wVwbA.jpeg" alt="Robert with grandchildren">
+              <div class="gallery-cap">Grandpa with the grandkids — golden hour.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="jPGn2a1WRhGC72BAG-TDbw.jpeg" data-cap="A granddaughter buries her face in Robert's shoulder at a restaurant. Robert is laughing. He is wearing a Countyardone Rock Cafe hat and the largest smile in the building. Whatever was said or done in the seconds before this photograph was taken was apparently very good. It is not documented. Some things don't need to be.">
+              <img src="jPGn2a1WRhGC72BAG-TDbw.jpeg" alt="Robert with granddaughter">
+              <div class="gallery-cap">A granddaughter's hug — no further documentation needed.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERA 4: ADVENTURES -->
+        <div class="gallery-era">
+          <div class="gallery-era-title">Adventures &amp; Misadventures</div>
+          <div class="gallery-row">
+            <div class="gallery-item" onclick="openLb(this)" data-src="E5DBFF68-BE2A-4470-9068-B30A5BADEDCB.jpeg" data-cap="Cox (green sunglasses, center) on a legendary boys' fishing trip, presenting what witnesses later described as the largest catch of the morning. The fish is approximately the size of a large thumb. The crowd, including at least two of his sons, appears to find this funnier than Robert does. He holds it with the pride of a man who caught something significant. It is not large. He does not appear to notice.">
+              <img src="E5DBFF68-BE2A-4470-9068-B30A5BADEDCB.jpeg" alt="Fishing trip">
+              <div class="gallery-cap">The legendary catch — scale disputed.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="R7uzwfLeQVylS316GnRRLA.jpeg" data-cap="Robert and Chris on a pink paddle boat, drinks in hand, cooler between them, no pedaling happening. The rope attached to the boat suggests they are anchored, which is either a safety measure or a philosophical statement about the value of going nowhere in particular when the company is good. Scholars lean toward the latter.">
+              <img src="R7uzwfLeQVylS316GnRRLA.jpeg" alt="Pink paddle boat">
+              <div class="gallery-cap">Pink paddle boat — no regrets, no pedaling.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="sC-SGDVZTkGnMt9E1oYXeA.jpeg" data-cap="Robert and Chris hold matching bowls of what appears to be a serious piece of brunch cuisine. Both are grinning. This is the face of two people who ordered correctly and know it. Robert's hat is slightly tilted. This is his most relaxed angle and also his most dangerous, because a relaxed Robert is a Robert who has time to explain things.">
+              <img src="sC-SGDVZTkGnMt9E1oYXeA.jpeg" alt="Good food, good company">
+              <div class="gallery-cap">Good food, good company — both confirmed.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="mz65MhJEQeGSUaARLi1BeA.jpeg" data-cap="Robert, photographed at what appears to be Zion National Park, looking upward with the expression of a man who is either deeply moved by the geology or already formulating an explanation of it. The rock formation behind him is significant. He is also significant. The composition, whether intentional or not, makes a point.">
+              <img src="mz65MhJEQeGSUaARLi1BeA.jpeg" alt="Zion National Park">
+              <div class="gallery-cap">Zion National Park — man meets monolith.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="z4y-FlT-QkKwk_J23aDMQg.jpeg" data-cap="Robert and Chris on a couch together. Chris is looking at his phone. Robert is looking at Chris. This photograph, taken at rest, contains more quiet affection than most portraits taken at attention. It is a Sunday afternoon documented. It matters.">
+              <img src="z4y-FlT-QkKwk_J23aDMQg.jpeg" alt="Robert and Chris on the couch">
+              <div class="gallery-cap">Robert & Chris — a Sunday afternoon documented.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERA 5: THE LEGEND HIMSELF -->
+        <div class="gallery-era">
+          <div class="gallery-era-title">The Legend Himself</div>
+          <div class="gallery-row">
+            <div class="gallery-item" onclick="openLb(this)" data-src="6y5bRTIxRyOnhUeQ5YTxhg.jpeg" data-cap="Robert at a marina, eyes closed, wearing a stick-on novelty mustache. He appears serene. The boats behind him are oblivious to the significance of the moment. This photograph is believed to be evidence of the same man who once earnestly requested long-handled underwear. Both facts are equally true and together constitute a complete portrait.">
+              <img src="6y5bRTIxRyOnhUeQ5YTxhg.jpeg" alt="Fake mustache marina">
+              <div class="gallery-cap">Marina, novelty mustache — peak composure.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="-Iw1YFJdTCKbL3TD_y_xiQ.jpeg" data-cap="Robert, UNI Panthers faithful, photographed mid-expression. He is wearing a black beanie, red-framed glasses, a University of Northern Iowa shirt, and absolutely no apologies. The basket in the background belongs to someone with good taste. Robert belongs to the category of people who make every room funnier simply by being in it.">
+              <img src="-Iw1YFJdTCKbL3TD_y_xiQ.jpeg" alt="Robert in UNI shirt">
+              <div class="gallery-cap">UNI faithful — fully committed to the bit.</div>
+            </div>
+            <div class="gallery-item" onclick="openLb(this)" data-src="oni9pH3pSYqrjLGsFVcBtA.jpeg" data-cap="Robert, photographed at what appears to be a birthday celebration, standing in a field of ethereal light among winged horses and celestial beings. He is wearing a party sash. He appears completely comfortable with his surroundings. This image has not been verified by standard editorial review. It has, however, been verified by everyone who knows Robert as entirely plausible.">
+              <img src="oni9pH3pSYqrjLGsFVcBtA.jpeg" alt="Robert in the mythical realm">
+              <div class="gallery-cap">Birthday in the mythical realm — as expected.</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /gallery-section -->
+
+      <!-- REFERENCES -->
+      <h2 id="references"><span class="edit-link">[<a href="#">edit</a>]</span>References</h2>
+      <div class="reflist">
+        <ol>
+          <li id="ref1">Cox family oral record. <em>Thanksgiving Table Proceedings, 1992–present.</em> Unpublished.</li>
+          <li id="ref2">Institute for Midwest Conversational Studies. "The Unsolicited Briefing: A Typology." <em>Journal of Regional Dad Behavior</em>, vol. 4, 2011.</li>
+          <li id="ref3">Chris Cox, personal communication, 2024. "He's explained the bridge to me at least once per year since 1998."</li>
+          <li id="ref4">Minnesota Historical Society. <em>People Who Will Explain Things to You</em>, 3rd ed. St. Paul, 2009.</li>
+          <li id="ref5">Cox family genealogical records. Paul Storrusten (1882–1953) and Olga Berge (1898–1972) confirmed via census and vital records. Their contribution to the family's opinion density has not been formally quantified.</li>
+          <li id="ref6">National Weather Service. Personal records, Minneapolis district. Note appended: "Unknown civilian, highly accurate."</li>
+          <li id="ref7">Photograph, circa early 1980s. Nametag clearly reads <em>COX</em>. Eagle in background: unconfirmed.</li>
+          <li id="ref8">Cox family census, 2023. Response rate on rank question: 0%.</li>
+          <li id="ref9">U.S. Army field notes. Section: "Personnel with strong opinions about egress routes."</li>
+          <li id="ref10">Cox, R.A. <em>Things I Know That You Should Also Know.</em> Self-published. Date unknown. Believed to exist.</li>
+          <li id="ref11">"Witnesses Report Bridge Commentary at Wedding Reception." <em>Upper Midwest Dinner Table Quarterly</em>, 2006.</li>
+          <li id="ref12">Oral history project. Query: "Did anyone ask about the bridge first?" Responses: none affirmative.</li>
+          <li id="ref13">Cox, R.A. Annual Address, Thanksgiving, 1993–present. Transcript not kept. Summary consistent year-to-year.</li>
+          <li id="ref14">American Anthropological Association. "Holiday Ritual and the Poultry Lecture." 2017 conference proceedings.</li>
+          <li id="ref15">Anonymous, Taylor County, Texas. "Part of a wall at someone's cousin's place." Personal interview.</li>
+          <li id="ref16">Texas Folklife Resources. <em>Regional Feasts of West Texas: Documented and Alleged.</em> Austin, 2004.</li>
+          <li id="ref17">"The Abilene Squirrel Feast." <em>West Texas Oral History Archive</em>, item 4471-B.</li>
+          <li id="ref18">Ibid. Skillet count disputed. No challenger has come forward.</li>
+          <li id="ref19">Bell provenance unknown. Dogs confirmed by multiple sources.</li>
+          <li id="ref20">Abilene squirrel population monitoring records. Note: "unusual calm observed near one individual."</li>
+          <li id="ref21">"The Pot." Local legend, Taylor County. Equipment: inconclusive.</li>
+          <li id="ref22">Regional hospitality ranking system, informal. "Robert Cox near Abilene good" listed as apex category.</li>
+          <li id="ref23">Feast attendee interviews. Agreement on one thing: the lecture was longer than the food.</li>
+          <li id="ref23c">Cox, R.A., personal account, date unknown. No independent linguist has reviewed the methodology. Several have been informed it exists.</li>
+          <li id="ref23d">Lewis and Clark expedition journals reviewed. No squirrel is named. This has not settled the matter.</li>
+          <li id="ref23b">Multiple family members, independently. Clerk's name unknown. Garment was located.</li>
+          <li id="ref23e">Eyewitness accounts vary on exact song selection. They do not vary on the hand motions.</li>
+          <li id="ref23f">TikTok analytics, archived. Peak engagement: Tuesday, 11:47 p.m. Demographic breakdown unavailable. "Vibes confirmed" by multiple comment threads.</li>
+          <li id="ref23g">No statement has been forthcoming. The bridge, presumably, remains smart.</li>
+          <li id="ref24">Smart thermostat logs, Cox residence. Authority flag set: TRUE for one user profile.</li>
+          <li id="ref25">Cox family interview compilation. Quote attributed to multiple relatives independently.</li>
+          <li id="ref26">"I Read an Article About This: A Longitudinal Study of Uncited Claims." In preparation.</li>
+          <li id="ref27">Encyclopaedia of Regional American Dad Phenomena, vol. 7. "Cox, Robert A." pp. 214–219.</li>
+          <li id="ref28">Minnesota Humanities Center. <em>On Structural Opinions and Their Delivery.</em> 2015.</li>
+          <li id="ref29">Iowa Army National Guard, Child &amp; Youth Program. Program overview, 2024.</li>
+          <li id="ref30">Unanimous. See all prior sources.</li>
+          <li id="ref-int1">Cox, Robert Alan. Oral history interview conducted by Chris Cox. Recorded January 9, 2026, Ankeny, Iowa. Duration: 44:59. Transcript on file.</li>
+        </ol>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="categories" id="categories">
+        <span class="categories-title">Categories:</span>
+        <a href="#">American military veterans</a> ·
+        <a href="#">Minnesota people</a> ·
+        <a href="#">Regional folklore figures</a> ·
+        <a href="#">Squirrel-related cuisine</a> ·
+        <a href="#">Infrastructure commentary</a> ·
+        <a href="#">Tryptophan advocates</a> ·
+        <a href="#">Unsolicited briefing practitioners</a> ·
+        <a href="#">West Texas feasting legends</a> ·
+        <a href="#">People with preferred chairs</a> ·
+        <a href="#">Fathers</a>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main-col -->
+
+  <!-- ── APPEARANCE PANEL ── -->
+  <div id="appearance-panel">
+    <div class="ap-header">
+      <strong>Appearance</strong>
+      <span class="ap-hide">[hide]</span>
+    </div>
+
+    <div class="ap-section">
+      <div class="ap-label">Dad Mode</div>
+      <label class="ap-option"><input type="radio" name="dadmode" value="off"> Disabled</label>
+      <label class="ap-option"><input type="radio" name="dadmode" value="on" checked> Enabled <em style="color:#888;font-size:11px">(bridge commentary on)</em></label>
+    </div>
+
+    <div class="ap-section">
+      <div class="ap-label">Text</div>
+      <div class="ap-option-group">
+        <div class="ap-btn">Small</div>
+        <div class="ap-btn active">Standard</div>
+        <div class="ap-btn">Large</div>
+      </div>
+    </div>
+
+    <div class="ap-section">
+      <div class="ap-label">Width</div>
+      <div class="ap-option-group">
+        <div class="ap-btn active">Standard</div>
+        <div class="ap-btn">Wide</div>
+      </div>
+    </div>
+
+    <div class="ap-section">
+      <div class="ap-label">Color (beta)</div>
+      <label class="ap-option"><input type="radio" name="color" value="auto"> Automatic</label>
+      <label class="ap-option"><input type="radio" name="color" value="light" checked> Light</label>
+      <label class="ap-option"><input type="radio" name="color" value="dark"> Dark</label>
+      <label class="ap-option"><input type="radio" name="color" value="texas"> Abilene Dusk</label>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- LIGHTBOX -->
+<div id="lb-overlay" onclick="closeLbIfBg(event)">
+  <span id="lb-close" onclick="closeLb()">×</span>
+  <div id="lb-nav">
+    <span class="lb-arrow" onclick="lbNav(-1)">&#8249;</span>
+    <span class="lb-arrow" onclick="lbNav(1)">&#8250;</span>
+  </div>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-caption"></div>
+</div>
+
+<script>
+  const lbItems = Array.from(document.querySelectorAll('.gallery-item'));
+  let lbIdx = 0;
+
+  function openLb(el) {
+    lbIdx = lbItems.indexOf(el);
+    showLb(lbIdx);
+    document.getElementById('lb-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showLb(i) {
+    const el = lbItems[i];
+    document.getElementById('lb-img').src = el.dataset.src;
+    document.getElementById('lb-caption').textContent = el.dataset.cap;
+  }
+
+  function closeLb() {
+    document.getElementById('lb-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeLbIfBg(e) {
+    if (e.target === document.getElementById('lb-overlay')) closeLb();
+  }
+
+  function lbNav(dir) {
+    lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
+    showLb(lbIdx);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    const ov = document.getElementById('lb-overlay');
+    if (!ov.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowRight') lbNav(1);
+    if (e.key === 'ArrowLeft') lbNav(-1);
+  });
+</script>
+
+</body>
+</html>
