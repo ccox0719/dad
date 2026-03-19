@@ -343,6 +343,47 @@ ul.article-list, ol.article-list { margin: 8px 0 12px 28px; line-height: 1.85; }
   font-family: var(--sans); font-size: 11px; color: var(--text-muted);
   margin-top: 6px;
 }
+.interview-segments {
+  margin-top: 18px;
+  border-top: 1px solid #c8d8e8;
+  padding-top: 14px;
+}
+.interview-segments-label {
+  font-family: var(--sans); font-size: 12px; font-weight: 700;
+  color: #2a4a7f; text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.interview-segment {
+  background: #ffffff;
+  border: 1px solid #d8e4ef;
+  border-radius: 3px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+.interview-segment-header {
+  display: flex; align-items: baseline; gap: 8px;
+  margin-bottom: 6px; flex-wrap: wrap;
+}
+.interview-segment-num {
+  font-family: var(--sans); font-size: 10px; font-weight: 700;
+  color: #fff; background: #3366cc;
+  border-radius: 2px; padding: 1px 5px; flex-shrink: 0;
+}
+.interview-segment-title {
+  font-family: var(--sans); font-size: 13px; font-weight: 600;
+  color: #202122; flex: 1;
+}
+.interview-segment-time {
+  font-family: var(--sans); font-size: 11px; color: var(--text-muted);
+  flex-shrink: 0;
+}
+.interview-segment-desc {
+  font-family: var(--sans); font-size: 12px; color: #54595d;
+  margin-bottom: 7px; line-height: 1.5;
+}
+.interview-segment audio {
+  width: 100%; display: block; height: 32px;
+}
 
 .pull-quote {
   float: right; clear: right;
@@ -873,6 +914,95 @@ details[open] .tx-summary::before { content: "▼ "; }
           Your browser does not support the audio element.
         </audio>
         <div class="interview-player-meta">Recorded January 9, 2026 · Ankeny, Iowa · Duration: 44:59 · Interviewer: Chris Cox</div>
+
+        <div class="interview-segments">
+          <div class="interview-segments-label">Listen by section</div>
+
+          <div class="interview-segment">
+            <div class="interview-segment-header">
+              <span class="interview-segment-num">1</span>
+              <span class="interview-segment-title">Intro &amp; The Kindest Person</span>
+              <span class="interview-segment-time">0:00 – 5:45</span>
+            </div>
+            <div class="interview-segment-desc">Intro and discussion of the kindest person in his life, including memories of William Floyd Cox.</div>
+            <audio controls>
+              <source src="interview_sections/01-intro-and-kindest-person.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+
+          <div class="interview-segment">
+            <div class="interview-segment-header">
+              <span class="interview-segment-num">2</span>
+              <span class="interview-segment-title">Difficult Memories &amp; Loss</span>
+              <span class="interview-segment-time">5:45 – 15:25</span>
+            </div>
+            <div class="interview-segment-desc">Difficult memories, the loss of Kelsey, grief, recovery, back pain, and close friends.</div>
+            <audio controls>
+              <source src="interview_sections/02-difficult-memories-and-loss.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+
+          <div class="interview-segment">
+            <div class="interview-segment-header">
+              <span class="interview-segment-num">3</span>
+              <span class="interview-segment-title">Life Lessons, Family &amp; Work</span>
+              <span class="interview-segment-time">15:25 – 20:33</span>
+            </div>
+            <div class="interview-segment-desc">Lessons from hardship, patience, family, and the fleeting nature of work.</div>
+            <audio controls>
+              <source src="interview_sections/03-life-lessons-family-and-work.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+
+          <div class="interview-segment">
+            <div class="interview-segment-header">
+              <span class="interview-segment-num">4</span>
+              <span class="interview-segment-title">Loneliness in Korea</span>
+              <span class="interview-segment-time">20:33 – 22:08</span>
+            </div>
+            <div class="interview-segment-desc">Feeling alone in Korea during Christmas guard duty.</div>
+            <audio controls>
+              <source src="interview_sections/04-loneliness-in-korea.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+
+          <div class="interview-segment">
+            <div class="interview-segment-header">
+              <span class="interview-segment-num">5</span>
+              <span class="interview-segment-title">Memories, Adventures &amp; Retirement</span>
+              <span class="interview-segment-time">22:08 – 39:17</span>
+            </div>
+            <div class="interview-segment-desc">Best memories, adventures, stories, later-life reflections, and retirement.</div>
+            <audio controls>
+              <source src="interview_sections/05-memories-adventures-and-retirement.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+
+          <div class="interview-segment">
+            <div class="interview-segment-header">
+              <span class="interview-segment-num">6</span>
+              <span class="interview-segment-title">Wisdom for the Next Generation</span>
+              <span class="interview-segment-time">39:17 – 42:26</span>
+            </div>
+            <div class="interview-segment-desc">Advice about slowing down, regrets, serving others, patience, and love.</div>
+            <audio controls>
+              <source src="interview_sections/06-wisdom-for-next-generation.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+
+          <div class="interview-segment">
+            <div class="interview-segment-header">
+              <span class="interview-segment-num">7</span>
+              <span class="interview-segment-title">Son's Reflections &amp; Closing</span>
+              <span class="interview-segment-time">42:26 – 44:59</span>
+            </div>
+            <div class="interview-segment-desc">Closing reflections from his son on generosity, work ethic, and family humor.</div>
+            <audio controls>
+              <source src="interview_sections/07-sons-reflections-and-closing.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+
+        </div>
       </div>
 
       <h3 id="int-highlights">Selected highlights</h3>
