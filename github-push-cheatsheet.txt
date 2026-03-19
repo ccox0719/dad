@@ -1,0 +1,61 @@
+GitHub Push Cheat Sheet
+Repo: https://github.com/ccox0719/dad
+Local folder: /Users/cox/Documents/RobertCox
+
+Basic push flow
+1. cd /Users/cox/Documents/RobertCox
+2. git status
+3. git add -A
+4. git commit -m "Describe the change"
+5. git push origin main
+
+Check the current remote
+git remote -v
+
+Check current branch and changes
+git status --short --branch
+
+If GitHub says permission denied to the wrong user
+1. Check whether GitHub CLI is installed
+   which gh
+
+2. Remove cached GitHub credentials from macOS keychain
+   printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
+
+3. If gh is installed, log out and back in
+   gh auth logout -h github.com
+   gh auth login -h github.com -w
+
+4. When the browser opens, sign in as:
+   ccox0719
+
+5. Try the push again
+   cd /Users/cox/Documents/RobertCox
+   git push origin main
+
+If gh is not installed
+1. Set the credential helper
+   git config --global credential.helper osxkeychain
+
+2. Remove cached GitHub credentials
+   printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
+
+3. Push again
+   cd /Users/cox/Documents/RobertCox
+   git push origin main
+
+4. Enter:
+   Username: ccox0719
+   Password: GitHub personal access token
+
+Useful commands
+git log --oneline -n 5
+git diff
+git restore --staged <file>
+git restore <file>
+
+Current known-good push example
+cd /Users/cox/Documents/RobertCox
+git add -A
+git commit -m "Update page content and assets"
+git push origin main
