@@ -3,11 +3,11 @@ Repo: https://github.com/ccox0719/dad
 Local folder: /Users/cox/Documents/RobertCox
 
 Basic push flow
-1. cd /Users/cox/Documents/RobertCox
-2. git status
-3. git add -A
-4. git commit -m "Describe the change"
-5. git push origin main
+cd /Users/cox/Documents/RobertCox
+git status
+git add -A
+git commit -m "updated"
+git push origin main
 
 Check the current remote
 git remote -v
