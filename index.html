@@ -338,15 +338,15 @@ ul.article-list, ol.article-list { margin: 8px 0 12px 28px; line-height: 1.85; }
 
 @media print {
   @page {
-    size: auto;
-    margin: 0.65in;
+    size: letter portrait;
+    margin: 0.75in 0.7in 0.8in;
   }
 
   html, body {
     background: #fff !important;
     color: #000 !important;
-    font-size: 11.5pt;
-    line-height: 1.45;
+    font-size: 11.25pt;
+    line-height: 1.55;
   }
 
   #site-header,
@@ -356,9 +356,17 @@ ul.article-list, ol.article-list { margin: 8px 0 12px 28px; line-height: 1.85; }
   .edit-link,
   .notice,
   .quality-badge,
+  .from-wiki,
+  .page-subtitle,
   .tabs-right,
   .interview-player,
+  .tx-wrap,
+  #gallery,
+  .hatnote,
   .gallery-section,
+  #references,
+  .reflist,
+  .categories,
   #lightbox,
   #lbOverlay,
   script {
@@ -403,41 +411,68 @@ ul.article-list, ol.article-list { margin: 8px 0 12px 28px; line-height: 1.85; }
 
   .page-title {
     display: block;
-    font-size: 24pt;
-    border-bottom: 1px solid #999;
-    margin-bottom: 10pt;
+    font-size: 28pt;
+    line-height: 1.15;
+    text-align: center;
+    border-bottom: none;
+    margin: 0 0 20pt;
+    padding-bottom: 16pt;
+    position: relative;
   }
 
-  .page-subtitle {
-    margin-bottom: 14pt;
-    color: #444 !important;
+  .page-title::after {
+    content: "";
+    display: block;
+    width: 2.3in;
+    height: 1px;
+    background: #999;
+    margin: 12pt auto 0;
+  }
+
+  h2 {
+    font-size: 16pt;
+    font-weight: 400;
+    margin: 24pt 0 10pt;
+    padding-bottom: 3pt;
+    border-bottom: 1px solid #bbb;
+  }
+
+  h3 {
+    font-size: 12.5pt;
+    margin: 14pt 0 6pt;
   }
 
   .infobox {
-    float: right !important;
-    width: 2.9in !important;
-    margin: 0 0 14pt 18pt !important;
+    float: none !important;
+    width: 100% !important;
+    max-width: 4.6in !important;
+    margin: 0 auto 20pt !important;
     background: #fff !important;
     font-size: 9.5pt;
+    border: 1px solid #888;
   }
 
   .infobox-photo img {
     width: 100% !important;
+    max-width: 3.2in !important;
     height: auto !important;
     object-fit: contain !important;
     filter: none !important;
   }
 
   .infobox-photo-caption {
-    max-width: none !important;
+    max-width: 3.2in !important;
     font-size: 8.5pt;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .thumb {
-    float: right !important;
-    max-width: 2.7in !important;
-    margin: 0 0 12pt 16pt !important;
+    float: none !important;
+    max-width: 3.6in !important;
+    margin: 12pt auto !important;
     background: #fff !important;
+    border-color: #999 !important;
   }
 
   .thumb img {
@@ -445,23 +480,69 @@ ul.article-list, ol.article-list { margin: 8px 0 12px 28px; line-height: 1.85; }
     object-fit: contain !important;
   }
 
-  .gallery-row {
-    display: none !important;
+  .thumb-caption {
+    padding-top: 6pt;
+    font-size: 9pt;
+    text-align: center;
+    color: #444 !important;
   }
 
-  .reflist {
-    columns: 1 !important;
-    font-size: 9pt;
+  .pull-quote {
+    float: none !important;
+    width: auto !important;
+    margin: 14pt 0 !important;
+    border-top: 1px solid #999 !important;
+    border-bottom: 1px solid #ccc !important;
+    background: #fafafa !important;
   }
 
   .family-notes-grid {
-    display: block !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12pt !important;
   }
 
   .family-note-card {
-    margin-bottom: 12pt;
+    margin-bottom: 0;
     box-shadow: none !important;
-    border-top-width: 1px;
+    border: 1px solid #999 !important;
+    border-top: 3px solid #8f8f8f !important;
+    padding: 14pt 16pt !important;
+    background: #fcfcfc !important;
+  }
+
+  .family-note-name {
+    font-size: 12pt;
+    margin-bottom: 10pt;
+  }
+
+  .family-note-prompt {
+    font-size: 9pt;
+    color: #555 !important;
+    margin-bottom: 3pt;
+  }
+
+  #family-notes {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  #personal,
+  #legacy,
+  #family-notes {
+    margin-top: 20pt;
+  }
+
+  #content > p,
+  #content > div,
+  #content > table,
+  #content > h2,
+  #content > h3 {
+    max-width: 6.9in;
+  }
+
+  #content > p {
+    margin-bottom: 9pt;
   }
 }
 
