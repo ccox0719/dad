@@ -395,6 +395,39 @@ ul.article-list, ol.article-list { margin: 8px 0 12px 28px; line-height: 1.85; }
   width: 100%; display: block; height: 32px;
 }
 
+.family-notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 14px 0 8px;
+}
+.family-note-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: 3px solid #a7c4e5;
+  padding: 14px 16px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+.family-note-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.family-note-prompt {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.family-note-card p:last-child {
+  margin-bottom: 0;
+}
+
 .pull-quote {
   float: right; clear: right;
   width: 260px; margin: 4px 0 18px 24px;
@@ -1364,11 +1397,19 @@ details[open] .tx-summary::before { content: "▼ "; }
         </div>
       </div>
 
-      <p><b>Chris Cox.</b> One of my favorite memories is being out on the lake with Dad and all my brothers, fishing together and laughing at each other. He has a laugh that is uniquely his, and it brings smiles to the whole group. I have always loved that about him.</p>
+      <div class="family-notes-grid">
+        <div class="family-note-card">
+          <div class="family-note-name">Chris Cox</div>
+          <div class="family-note-prompt">Favorite memory</div>
+          <p>One of my favorite memories is being out on the lake with Dad and all my brothers, fishing together and laughing at each other. He has a laugh that is uniquely his, and it brings smiles to the whole group. I have always loved that about him.</p>
 
-      <p>Something that feels especially like him is the way he taught me to laugh at myself and not take life too seriously. He has a humility and generosity that are easy to admire and much harder to match.</p>
+          <div class="family-note-prompt">What feels uniquely him</div>
+          <p>Something that feels especially like him is the way he taught me to laugh at myself and not take life too seriously. He has a humility and generosity that are easy to admire and much harder to match.</p>
 
-      <p>I want Dad to know that he will always be the man I look up to. I want to be humble like him, generous like him, and a servant like him. I love you, Dad.</p>
+          <div class="family-note-prompt">What I want him to know</div>
+          <p>I want Dad to know that he will always be the man I look up to. I want to be humble like him, generous like him, and a servant like him. I love you, Dad.</p>
+        </div>
+      </div>
 
       <!-- REFERENCES -->
       <h2 id="references"><span class="edit-link">[<a href="#">edit</a>]</span>References</h2>
